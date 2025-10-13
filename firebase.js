@@ -5,12 +5,20 @@ require('dotenv').config();
 let credential;
 
 if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-  // Production: Use environment variable (JSON string)
-  const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-  credential = admin.credential.cert(serviceAccount);
+  console.log('🔧 Using FIREBASE_SERVICE_ACCOUNT from environment variable');
+  try {
+    const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+    console.log('✅ Service account parsed successfully');
+    console.log('📧 Client email:', serviceAccount.client_email);
+    console.log('🆔 Project ID:', serviceAccount.project_id);
+    credential = admin.credential.cert(serviceAccount);
+  } catch (error) {
+    console.error('❌ Failed to parse FIREBASE_SERVICE_ACCOUNT:', error.message);
+    throw error;
+  }
 } else {
-  // Development: Use local JSON file
-  const serviceAccount = require('./typonix-50d87-firebase-adminsdk-fbsvc-b988c04a72.json');
+  console.log('🔧 Using local service account JSON file');
+  const serviceAccount = require('./typonix-50d87-firebase-adminsdk-fbsvc-d38babd164.json');
   credential = admin.credential.cert(serviceAccount);
 }
 

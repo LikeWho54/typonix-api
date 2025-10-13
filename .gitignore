@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+yarn-error.log
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Firebase service account keys (keep these private!)
+*-firebase-adminsdk-*.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
