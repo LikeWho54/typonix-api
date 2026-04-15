@@ -14,6 +14,9 @@ const seoRoutes = require('./routes/seo');
 const contentRoutes = require('./routes/content');
 const keywordRoutes = require('./routes/keywords');
 
+// Import scheduler
+const { startScheduler } = require('./lib/scheduler');
+
 // Basic route
 app.get('/', (req, res) => {
   res.json({
@@ -55,4 +58,5 @@ app.use('/keywords', keywordRoutes);
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 typonixAPI server running on port ${PORT}`);
+  startScheduler();
 });
